@@ -2,11 +2,11 @@
   <div class="panel">
     <div class="timers">
       <div class="timer">
-        <a v-bind:class="isActiveFirst">{{formatFirst}}</a>
+        <a v-bind:class="activeClassFirst">{{formatFirst}}</a>
       </div>
       {{' | '}}
       <div class="timer">
-        <a v-bind:class="isActiveSecond">{{formatSecond}}</a>
+        <a v-bind:class="activeClassSecond">{{formatSecond}}</a>
       </div>
     </div>
     <br />
@@ -34,9 +34,6 @@ const calculateTime = (time) => {
 
 export default {
   name: 'TimerPanel',
-  created() {
-    this.start();
-  },
   methods: {
     start() {
       this.$store.dispatch('start');
@@ -59,16 +56,19 @@ export default {
     switchButtonId() {
       return this.$store.state.first.active ? 2 : 1;
     },
-    isActiveFirst() {
+    activeClassFirst() {
       return {
-        active: this.$attrs.firstActive,
+        active: this.$store.state.first.active,
       };
     },
-    isActiveSecond() {
+    activeClassSecond() {
       return {
-        active: this.$attrs.secondActive,
+        active: this.$store.state.second.active,
       };
     },
+  },
+  created() {
+    this.start();
   },
 };
 </script>

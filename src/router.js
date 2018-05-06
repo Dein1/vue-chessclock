@@ -11,10 +11,6 @@ export default new Router({
     {
       path: '/1',
       name: 'first',
-      props: {
-        firstActive: true,
-        secondActive: false,
-      },
       component: TimerPanel,
       beforeEnter: (to, from, next) => {
         store.dispatch('activeFirst');
@@ -25,10 +21,6 @@ export default new Router({
     {
       path: '/2',
       name: 'second',
-      props: {
-        firstActive: false,
-        secondActive: true,
-      },
       component: TimerPanel,
       beforeEnter: (to, from, next) => {
         store.dispatch('activeSecond');
