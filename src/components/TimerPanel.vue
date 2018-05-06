@@ -23,11 +23,12 @@
 
 <script>
 const calculateTime = (time) => {
-  const minutes = Math.floor(time / 6000);
+  const tenMilliseconds = time / 10;
+  const minutes = Math.floor(tenMilliseconds / 6000);
   const formattedMinutes = (`0${minutes}`).slice(-2);
-  const seconds = Math.floor((time - (6000 * minutes)) / 100);
+  const seconds = Math.floor((tenMilliseconds - (6000 * minutes)) / 100);
   const formattedSeconds = (`0${seconds}`).slice(-2);
-  const milliseconds = (time - (6000 * minutes) - (100 * seconds));
+  const milliseconds = (tenMilliseconds - (6000 * minutes) - (100 * seconds));
   const formattedMilliseconds = (`0${milliseconds}`).slice(-2);
   return `${formattedMinutes}:${formattedSeconds}.${formattedMilliseconds}`;
 };

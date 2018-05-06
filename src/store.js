@@ -8,11 +8,11 @@ let interval = null;
 export default new Vuex.Store({
   state: {
     first: {
-      time: 12000,
+      time: 120000,
       active: true,
     },
     second: {
-      time: 12000,
+      time: 120000,
       active: false,
     },
   },
@@ -22,7 +22,7 @@ export default new Vuex.Store({
         this.stop();
         return;
       }
-      state.first.active ? state.first.time -= 1 : state.second.time -= 1;
+      state.first.active ? state.first.time -= 10 : state.second.time -= 10;
     },
     activeFirst(state) {
       state.first.active = true;
@@ -33,8 +33,8 @@ export default new Vuex.Store({
       state.second.active = true;
     },
     resetState(state) {
-      state.first.time = 12000;
-      state.second.time = 12000;
+      state.first.time = 120000;
+      state.second.time = 120000;
     },
   },
   actions: {
