@@ -14,7 +14,7 @@ export default new Vuex.Store({
   mutations: {
     decrement(state) {
       if (state.first <= 0 || state.second <= 0) {
-        clearInterval(interval);
+        this.stop();
         return;
       } // eslint-disable-next-line
       state.firstActive ? state.first -= 1 : state.second -= 1;

@@ -13,7 +13,6 @@ export default new Router({
       name: 'first',
       props: {
         firstActive: true,
-        secondActive: false,
       },
       component: TimerPanel,
       beforeEnter: (to, from, next) => {
@@ -27,7 +26,6 @@ export default new Router({
       name: 'second',
       props: {
         firstActive: false,
-        secondActive: true,
       },
       component: TimerPanel,
       beforeEnter: (to, from, next) => {

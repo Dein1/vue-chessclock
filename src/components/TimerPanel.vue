@@ -66,7 +66,7 @@ export default {
     },
     isActiveSecond() {
       return {
-        active: this.$attrs.secondActive,
+        active: !this.$attrs.firstActive,
       };
     },
   },
