@@ -13,8 +13,6 @@
     <br />
     <button v-on:click="start">start</button>
     {{' '}}
-    <button v-on:click="stop">stop</button>
-    {{' '}}
     <button v-on:click="reset">reset</button>
     {{' '}}
     <router-link :to="{ path: `${switchButtonId}` }" tag="button">switch</router-link>
@@ -39,11 +37,8 @@ export default {
     start() {
       this.$store.dispatch('start');
     },
-    stop() {
-      this.$store.dispatch('stop');
-    },
     reset() {
-      this.stop();
+      this.$store.dispatch('stop');
       this.$store.dispatch('reset');
     },
   },
