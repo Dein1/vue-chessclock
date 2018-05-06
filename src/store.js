@@ -21,7 +21,7 @@ export default new Vuex.Store({
       if (state.first.time <= 0 || state.second.time <= 0) {
         this.stop();
         return;
-      } // eslint-disable-next-line
+      }
       state.first.active ? state.first.time -= 1 : state.second.time -= 1;
     },
     activeFirst(state) {
