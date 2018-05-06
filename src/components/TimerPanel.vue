@@ -22,7 +22,7 @@ const computeTime = (time) => {
 };
 
 export default {
-  name: 'Timer',
+  name: 'TimerPanel',
   created() {
     this.$store.dispatch('start');
   },
@@ -43,7 +43,7 @@ export default {
     },
     switchButtonId() {
       return this.$store.state.firstActive ? 2 : 1;
-    }
+    },
   },
 };
 </script>
