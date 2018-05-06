@@ -3,13 +3,13 @@ import Vuex from 'vuex';
 
 Vue.use(Vuex);
 
-let interval;
+let interval = null;
 
 export default new Vuex.Store({
   state: {
     firstActive: true,
-    first: 1000,
-    second: 1000,
+    first: 12000,
+    second: 12000,
   },
   mutations: {
     decrement(state) {
@@ -25,15 +25,22 @@ export default new Vuex.Store({
     activeSecond(state) { // eslint-disable-next-line
       state.firstActive = false;
     },
+    reset(state) { // eslint-disable-next-line
+      state.first = 12000; // eslint-disable-next-line
+      state.second = 12000;
+    },
   },
   actions: {
     start({ commit }) {
-      interval = setInterval(() => {
-        commit('decrement');
-      }, 1);
+      if (interval === null) {
+        interval = setInterval(() => {
+          commit('decrement');
+        }, 10);
+      }
     },
     stop() {
       clearInterval(interval);
+      interval = null;
     },
   },
 });

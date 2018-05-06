@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-import TimerPanel from './views/TimerPanel.vue';
+import Timer from './components/Timer.vue';
 import store from './store';
 
 Vue.use(Router);
@@ -8,19 +8,19 @@ Vue.use(Router);
 export default new Router({
   routes: [
     {
-      path: '/',
+      path: '/1',
       name: 'first',
-      component: TimerPanel,
+      component: Timer,
       beforeEnter: (to, from, next) => {
         store.commit('activeFirst');
         next();
       },
-      alias: '/1',
+      alias: '/',
     },
     {
       path: '/2',
       name: 'second',
-      component: TimerPanel,
+      component: Timer,
       beforeEnter: (to, from, next) => {
         store.commit('activeSecond');
         next();
