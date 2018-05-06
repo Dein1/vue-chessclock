@@ -6,10 +6,15 @@ import store from './store';
 Vue.use(Router);
 
 export default new Router({
+  mode: 'history',
   routes: [
     {
       path: '/1',
       name: 'first',
+      props: {
+        firstActive: true,
+        secondActive: false,
+      },
       component: TimerPanel,
       beforeEnter: (to, from, next) => {
         store.commit('activeFirst');
@@ -20,6 +25,10 @@ export default new Router({
     {
       path: '/2',
       name: 'second',
+      props: {
+        firstActive: false,
+        secondActive: true,
+      },
       component: TimerPanel,
       beforeEnter: (to, from, next) => {
         store.commit('activeSecond');

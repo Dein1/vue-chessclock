@@ -1,6 +1,14 @@
 <template>
-  <div class="timer">
-    <a>{{formatTime}}</a>
+  <div class="panel">
+    <div class="timers">
+      <div class="timer">
+        <a v-bind:class="isActiveFirst">{{formatFirst}}</a>
+      </div>
+      {{' | '}}
+      <div class="timer">
+        <a v-bind:class="isActiveSecond">{{formatSecond}}</a>
+      </div>
+    </div>
     <br />
     <br />
     <button v-on:click="start">start</button>
@@ -14,17 +22,20 @@
 </template>
 
 <script>
-const computeTime = (time) => {
+const calculateTime = (time) => {
   const minutes = Math.floor(time / 6000);
   const formattedMinutes = (`0${minutes}`).slice(-2);
-  const seconds = ((time - (6000 * minutes)) / 100).toFixed(2);
-  return `${formattedMinutes}:${seconds}`;
+  const seconds = Math.floor((time - (6000 * minutes)) / 100);
+  const formattedSeconds = (`0${seconds}`).slice(-2);
+  const milliseconds = (time - (6000 * minutes) - (100 * seconds));
+  const formattedMilliseconds = (`0${milliseconds}`).slice(-2);
+  return `${formattedMinutes}:${formattedSeconds}.${formattedMilliseconds}`;
 };
 
 export default {
   name: 'TimerPanel',
   created() {
-    this.$store.dispatch('start');
+    this.start();
   },
   methods: {
     start() {
@@ -34,23 +45,53 @@ export default {
       this.$store.dispatch('stop');
     },
     reset() {
+      this.stop();
       this.$store.commit('reset');
     },
   },
   computed: {
-    formatTime() {
-      return `${computeTime(this.$store.state.first)}  |  ${computeTime(this.$store.state.second)}`;
+    formatFirst() {
+      return `${calculateTime(this.$store.state.first)}`;
+    },
+    formatSecond() {
+      return `${calculateTime(this.$store.state.second)}`;
     },
     switchButtonId() {
       return this.$store.state.firstActive ? 2 : 1;
+    },
+    isActiveFirst() {
+      return {
+        active: this.$attrs.firstActive,
+      };
+    },
+    isActiveSecond() {
+      return {
+        active: this.$attrs.secondActive,
+      };
     },
   },
 };
 </script>
 
 <style scoped>
-a {
+.timers {
   font-size: 250%;
+  padding: 27px 10px;
+}
+
+.timer {
+  display: inline-block;
+  margin: 15px;
+}
+
+a {
+  padding: 5px;
+  border: 1px solid white;
+}
+
+.active {
+  border: 1px solid #42b983;
+  padding: 5px;
 }
 
 button {
