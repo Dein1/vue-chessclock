@@ -7,27 +7,34 @@ let interval = null;
 
 export default new Vuex.Store({
   state: {
-    firstActive: true,
-    first: 12000,
-    second: 12000,
+    first: {
+      time: 12000,
+      active: true,
+    },
+    second: {
+      time: 12000,
+      active: false,
+    },
   },
   mutations: {
     decrement(state) {
-      if (state.first <= 0 || state.second <= 0) {
+      if (state.first.time <= 0 || state.second.time <= 0) {
         this.stop();
         return;
       } // eslint-disable-next-line
-      state.firstActive ? state.first -= 1 : state.second -= 1;
+      state.first.active ? state.first.time -= 1 : state.second.time -= 1;
     },
     activeFirst(state) {
-      state.firstActive = true;
+      state.first.active = true;
+      state.second.active = false;
     },
     activeSecond(state) {
-      state.firstActive = false;
+      state.first.active = false;
+      state.second.active = true;
     },
-    reset(state) {
-      state.first = 12000;
-      state.second = 12000;
+    resetState(state) {
+      state.first.time = 12000;
+      state.second.time = 12000;
     },
   },
   actions: {
@@ -41,6 +48,15 @@ export default new Vuex.Store({
     stop() {
       clearInterval(interval);
       interval = null;
+    },
+    reset() {
+      this.commit('resetState');
+    },
+    activeFirst() {
+      this.commit('activeFirst');
+    },
+    activeSecond() {
+      this.commit('activeSecond');
     },
   },
 });

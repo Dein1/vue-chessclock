@@ -13,10 +13,11 @@ export default new Router({
       name: 'first',
       props: {
         firstActive: true,
+        secondActive: false,
       },
       component: TimerPanel,
       beforeEnter: (to, from, next) => {
-        store.commit('activeFirst');
+        store.dispatch('activeFirst');
         next();
       },
       alias: '/',
@@ -26,10 +27,11 @@ export default new Router({
       name: 'second',
       props: {
         firstActive: false,
+        secondActive: true,
       },
       component: TimerPanel,
       beforeEnter: (to, from, next) => {
-        store.commit('activeSecond');
+        store.dispatch('activeSecond');
         next();
       },
     },

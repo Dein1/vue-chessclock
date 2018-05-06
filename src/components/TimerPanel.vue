@@ -46,18 +46,18 @@ export default {
     },
     reset() {
       this.stop();
-      this.$store.commit('reset');
+      this.$store.dispatch('reset');
     },
   },
   computed: {
     formatFirst() {
-      return `${calculateTime(this.$store.state.first)}`;
+      return `${calculateTime(this.$store.state.first.time)}`;
     },
     formatSecond() {
-      return `${calculateTime(this.$store.state.second)}`;
+      return `${calculateTime(this.$store.state.second.time)}`;
     },
     switchButtonId() {
-      return this.$store.state.firstActive ? 2 : 1;
+      return this.$store.state.first.active ? 2 : 1;
     },
     isActiveFirst() {
       return {
@@ -66,7 +66,7 @@ export default {
     },
     isActiveSecond() {
       return {
-        active: !this.$attrs.firstActive,
+        active: this.$attrs.secondActive,
       };
     },
   },
