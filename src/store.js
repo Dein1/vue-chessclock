@@ -19,14 +19,14 @@ export default new Vuex.Store({
       } // eslint-disable-next-line
       state.firstActive ? state.first -= 1 : state.second -= 1;
     },
-    activeFirst(state) { // eslint-disable-next-line
+    activeFirst(state) {
       state.firstActive = true;
     },
-    activeSecond(state) { // eslint-disable-next-line
+    activeSecond(state) {
       state.firstActive = false;
     },
-    reset(state) { // eslint-disable-next-line
-      state.first = 12000; // eslint-disable-next-line
+    reset(state) {
+      state.first = 12000;
       state.second = 12000;
     },
   },

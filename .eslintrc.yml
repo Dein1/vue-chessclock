@@ -1,0 +1,9 @@
+root: true
+
+extends:
+  - plugin:vue/essential
+  - airbnb-base
+
+rules:
+  no-param-reassign: 0
+  no-unused-expressions: 0
